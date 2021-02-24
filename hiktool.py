@@ -35,3 +35,28 @@ def download_video(user,password,IP,channel,init_time,end_time,filepath):
     result      =   os.system(comando)
     return result
 
+def download_images_from_channels(user,password,IP,channels,path):
+    """
+    This functions saved to disk images in JPG format of all channels
+    of the device. You must indicate which channels.
+
+    :param user:            (str) Device user for login.
+    :param password:        (str) Device password for login.
+    :param IP:              (str) "192.168.0.100".
+    :param channels:        (str) a string containing the channels separated by a blank "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16"
+    :param path:            (str) path to save the images downloaded
+
+    :return: None
+    """
+
+    filename_prefix = path + IP.replace(".", "_") + '-'
+    comando = "{} {} {} {} {} {} {}".format(
+                COMPILE_FILES_DIR+'Download_jpg',
+                IP,
+                PORT,
+                user,
+                password,
+                filename_prefix,
+                channels
+                )
+    return os.system(comando)
